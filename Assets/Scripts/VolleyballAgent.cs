@@ -16,7 +16,7 @@ public class VolleyballAgent : Agent
     Rigidbody ballRb;
 
     VolleyballSettings volleyballSettings;
-    VolleyballEnvController envController;
+    TournamentController envController;
 
     // Controls jump behavior
     float jumpingTime;
@@ -29,7 +29,7 @@ public class VolleyballAgent : Agent
 
     void Start()
     {
-        envController = area.GetComponent<VolleyballEnvController>();
+        envController = area.GetComponent<TournamentController>();
     }
 
     public override void Initialize()

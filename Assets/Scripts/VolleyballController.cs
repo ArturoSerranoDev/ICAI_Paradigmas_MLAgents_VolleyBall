@@ -3,7 +3,7 @@ using UnityEngine;
 public class VolleyballController : MonoBehaviour
 {
     [HideInInspector]
-    public VolleyballEnvController envController;
+    public TournamentController envController;
 
     public GameObject purpleGoal;
     public GameObject blueGoal;
@@ -12,7 +12,8 @@ public class VolleyballController : MonoBehaviour
 
     void Start()
     {
-        envController = GetComponentInParent<VolleyballEnvController>();
+        // envController = GetComponentInParent<VolleyballEnvController>();
+        envController = GetComponentInParent<TournamentController>();
         purpleGoalCollider = purpleGoal.GetComponent<Collider>();
         blueGoalCollider = blueGoal.GetComponent<Collider>();
     }
