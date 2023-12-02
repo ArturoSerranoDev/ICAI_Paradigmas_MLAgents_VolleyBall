@@ -2,23 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Team
-{
-    Blue = 0,
-    Purple = 1,
-    Default = 2
-}
 
-public enum Event
-{
-    HitPurpleGoal = 0,
-    HitBlueGoal = 1,
-    HitOutOfBounds = 2,
-    HitIntoBlueArea = 3,
-    HitIntoPurpleArea = 4
-}
-
-public class VolleyballEnvController : MonoBehaviour
+public class VolleyballEnvControllerAlone : MonoBehaviour
 {
     int ballSpawnSide;
 
