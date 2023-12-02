@@ -39,6 +39,24 @@ public class TournamentController : MonoBehaviour
     
     private int overallScore = 0;
     private int currentRound = 0;
+    
+    public IEnumerator NextScoreCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        ResetScene();
+    }
+    public IEnumerator NextRoundCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        ResetScene();
+    }
+    
+    public IEnumerator WinnerCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        ResetScene();
+    }
+    
     void Start()
     {
 

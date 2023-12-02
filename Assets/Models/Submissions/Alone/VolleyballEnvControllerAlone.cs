@@ -32,6 +32,8 @@ public class VolleyballEnvControllerAlone : MonoBehaviour
 
     private int resetTimer;
     public int MaxEnvironmentSteps;
+    
+ 
 
     void Start()
     {
