@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class TournamentController : MonoBehaviour
 {
+    public string BlueTeamName;
+    public string PurpleTeamName;
+
     int ballSpawnSide;
 
     VolleyballSettings volleyballSettings;
@@ -43,8 +46,6 @@ public class TournamentController : MonoBehaviour
     private int currentRound = 0;
 
     public TournamentAgentsSO tournamentAgentsSO;
-    public string BlueTeamName;
-    public string PurpleTeamName;
 
     public TournamentUI tournamentUI;
     
