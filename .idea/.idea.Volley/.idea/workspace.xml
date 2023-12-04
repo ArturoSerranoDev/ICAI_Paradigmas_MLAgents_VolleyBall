@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e1d0f7cd-f4d4-4c02-8412-161f7beae1b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Volley/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Volley/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Submissions/Alone/VolleyballEnvControllerAlone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Submissions/Alone/VolleyballEnvControllerAlone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Base/Materials/Sand.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Base/Materials/Sand.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Base/Prefabs/2PVolleyballArea.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Base/Prefabs/2PVolleyballArea.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Base/Prefabs/Agent_Blue_Default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Base/Prefabs/Agent_Blue_Default.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Base/Prefabs/Agent_Purple_Default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Base/Prefabs/Agent_Purple_Default.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Submissions/AlexJavi/Agent_Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Submissions/AlexJavi/Agent_Blue.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tournament.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tournament.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TournamentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TournamentController.cs" afterDir="false" />
     </list>
@@ -13,8 +17,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TournamentUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ml-agents@2.1.0-exp.1/Runtime/Agent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ml-agents@2.1.0-exp.1/Runtime/Policies/BehaviorParameters.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ml-agents@2.1.0-exp.1/Runtime/Policies/BehaviorParameters.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,7 +78,8 @@
       <option name="presentableId" value="Default" />
       <updated>1700757301945</updated>
       <workItem from="1700757310771" duration="2150000" />
-      <workItem from="1701522127545" duration="2214000" />
+      <workItem from="1701522127545" duration="3023000" />
+      <workItem from="1701693044351" duration="3129000" />
     </task>
     <servers />
   </component>

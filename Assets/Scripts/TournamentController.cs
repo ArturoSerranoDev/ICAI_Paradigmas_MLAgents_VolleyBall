@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Unity.MLAgents.Policies;
 using UnityEngine;
 
 public class TournamentController : MonoBehaviour
@@ -39,6 +41,20 @@ public class TournamentController : MonoBehaviour
     
     private int overallScore = 0;
     private int currentRound = 0;
+
+    public TournamentAgentsSO tournamentAgentsSO;
+    public string BlueTeamName;
+    public string PurpleTeamName;
+
+    public TournamentUI tournamentUI;
+    
+    public GameObject blueConfetti;
+    public GameObject purpleConfetti;
+    public GameObject blueCamera;
+    public GameObject purpleCamera;
+
+    public GameObject eyesBlue;
+    public GameObject eyesPurple;
     
     public IEnumerator NextScoreCoroutine()
     {
@@ -59,12 +75,21 @@ public class TournamentController : MonoBehaviour
     
     void Start()
     {
-
+        blueConfetti.SetActive(false);
+        purpleConfetti.SetActive(false);
+        blueCamera.SetActive(false);
+        purpleCamera.SetActive(false);
+        
         // Used to control agent & ball starting positions
         blueAgentRb = blueAgent.GetComponent<Rigidbody>();
         purpleAgentRb = purpleAgent.GetComponent<Rigidbody>();
         ballRb = ball.GetComponent<Rigidbody>();
-
+        
+        blueAgent.enabled = false;
+        purpleAgent.enabled = false;
+        
+        ballRb.isKinematic = true;
+        
         // Starting ball spawn side
         // -1 = spawn blue side, 1 = spawn purple side
         var spawnSideList = new List<int> { -1, 1 };
@@ -79,8 +104,51 @@ public class TournamentController : MonoBehaviour
         volleyballSettings = FindObjectOfType<VolleyballSettings>();
 
         SetRound(currentRound);
+        tournamentUI.UpdateRoundsText(blueRoundsWon, purpleRoundsWon);
+        tournamentUI.UpdateScore(blueScore, purpleScore);
+
+        StartCoroutine(StartMatchCoroutine());
+        // ResetScene();
+    }
+    private IEnumerator StartMatchCoroutine()
+    {
+        blueCamera.SetActive(true);
+        tournamentUI.expandingText.gameObject.SetActive(true);
+        tournamentUI.constantUIParent.transform.localPosition = new Vector3(0, 200, 0);
+
+        tournamentUI.expandingText.text = "Blue Team";
+        tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
+        
+        yield return new WaitForSeconds(2f);
+        
+        eyesBlue.transform.DOScaleY(0.25f, 0.5f);
+        tournamentUI.expandingText.text = "VS";
+        tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
+        
+        yield return new WaitForSeconds(1f);
+        
+        tournamentUI.expandingText.text = "Purple Team";
+        tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
+            
+        eyesPurple.transform.DOScaleY(0.25f, 0.5f);
+
+        blueCamera.SetActive(false);
+        purpleCamera.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        purpleCamera.SetActive(false);
+        ballRb.isKinematic = false;
+        blueAgent.enabled = true;
+        purpleAgent.enabled = true;
+        tournamentUI.expandingText.gameObject.SetActive(false);
+        tournamentUI.constantUIParent.transform.DOLocalMoveY(0, 1);
+        
+        eyesBlue.transform.localScale = Vector3.one;
+        eyesPurple.transform.localScale = Vector3.one;
+        
         ResetScene();
     }
+
+
     /// <summary>
     /// Tracks which agent last had control of the ball
     /// </summary>
@@ -110,6 +178,7 @@ public class TournamentController : MonoBehaviour
 
                 // end episode
                 ResetScene();
+                tournamentUI.UpdateScore(blueScore, purpleScore);
                 break;
 
             case Event.HitPurpleGoal:
@@ -122,10 +191,11 @@ public class TournamentController : MonoBehaviour
 
                 // end episode
                 ResetScene();
+                tournamentUI.UpdateScore(blueScore, purpleScore);
                 break;
         }
 
-        if(overallScore == 3)
+        if(blueScore == 3 || purpleScore == 3)
         {
             if(blueScore > purpleScore)
             {
@@ -137,19 +207,33 @@ public class TournamentController : MonoBehaviour
             }
             currentRound += 1;
             
-            if (currentRound == 3)
+            if (currentRound == 3 || (blueRoundsWon > purpleRoundsWon + 1 || purpleRoundsWon > blueRoundsWon + 1 ))
             {
                 SetWinner(blueRoundsWon > purpleRoundsWon ? Team.Blue : Team.Purple);
             }
             else
             {
                 SetRound(currentRound);
+                tournamentUI.UpdateScore(blueScore, purpleScore);
+                tournamentUI.UpdateRoundsText(blueRoundsWon, purpleRoundsWon);
+
+                ResetScene();
             }
         }
     }
 
     public void SetWinner(Team team)
     {
+        Debug.Log(team.ToString() + " is the winner");
+        
+        if (team == Team.Blue)
+        {
+            blueConfetti.SetActive(true);
+        }
+        else
+        {
+            purpleConfetti.SetActive(true);
+        }
     }
     /// <summary>
     /// Changes the color of the ground for a moment.
@@ -170,7 +254,6 @@ public class TournamentController : MonoBehaviour
         {
             renderer.material = volleyballSettings.defaultMaterial;
         }
-
     }
 
     /// <summary>
@@ -185,6 +268,12 @@ public class TournamentController : MonoBehaviour
             purpleAgent.EpisodeInterrupted();
             ResetScene();
         }
+    }
+
+    public IEnumerator ResetSceneCoroutine(Team scoringTeam)
+    {
+        yield return new WaitForSeconds(1f);
+        ResetScene();
     }
 
     /// <summary>
