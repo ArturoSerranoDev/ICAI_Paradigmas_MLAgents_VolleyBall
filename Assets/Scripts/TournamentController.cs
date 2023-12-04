@@ -55,7 +55,8 @@ public class TournamentController : MonoBehaviour
 
     public GameObject eyesBlue;
     public GameObject eyesPurple;
-    
+
+    private bool hasWinner;
     public IEnumerator NextScoreCoroutine()
     {
         yield return new WaitForSeconds(1f);
@@ -75,10 +76,14 @@ public class TournamentController : MonoBehaviour
     
     void Start()
     {
+        SetupAlumniAgents(BlueTeamName, PurpleTeamName);
+        
+        
         blueConfetti.SetActive(false);
         purpleConfetti.SetActive(false);
         blueCamera.SetActive(false);
         purpleCamera.SetActive(false);
+        tournamentUI.constantUIParent.SetActive(true);
         
         // Used to control agent & ball starting positions
         blueAgentRb = blueAgent.GetComponent<Rigidbody>();
@@ -110,13 +115,34 @@ public class TournamentController : MonoBehaviour
         StartCoroutine(StartMatchCoroutine());
         // ResetScene();
     }
+    private void SetupAlumniAgents(string blueTeamName, string purpleTeamName)
+    {
+        // Find on the tournamentAgentsSO the agents name that matches the blueTeamName and purpleTeamName
+        // and set the agents on the tournament controller
+        foreach (var agent in tournamentAgentsSO.agentsDataList)
+        {
+            if (agent.teamName == blueTeamName)
+            {
+                blueAgent.GetComponent<BehaviorParameters>().Model = agent.agentModel;
+                blueAgent.transform.localScale = agent.prefab.transform.localScale;
+            }
+            else if (agent.teamName == purpleTeamName)
+            {
+                purpleAgent.GetComponent<BehaviorParameters>().Model = agent.agentModel;
+                purpleAgent.transform.localScale = agent.prefab.transform.localScale;
+            }
+        }
+        
+        tournamentUI.UpdateTeamNames(blueTeamName, purpleTeamName);
+        
+    }
     private IEnumerator StartMatchCoroutine()
     {
         blueCamera.SetActive(true);
         tournamentUI.expandingText.gameObject.SetActive(true);
         tournamentUI.constantUIParent.transform.localPosition = new Vector3(0, 200, 0);
 
-        tournamentUI.expandingText.text = "Blue Team";
+        tournamentUI.expandingText.text = BlueTeamName;
         tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
         
         yield return new WaitForSeconds(2f);
@@ -127,7 +153,7 @@ public class TournamentController : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         
-        tournamentUI.expandingText.text = "Purple Team";
+        tournamentUI.expandingText.text = PurpleTeamName;
         tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
             
         eyesPurple.transform.DOScaleY(0.25f, 0.5f);
@@ -163,6 +189,10 @@ public class TournamentController : MonoBehaviour
     /// </summary>
     public void ResolveEvent(Event triggerEvent)
     {
+        
+        if (hasWinner)
+            return;
+        
         switch (triggerEvent)
         {
             case Event.HitOutOfBounds:
@@ -229,11 +259,19 @@ public class TournamentController : MonoBehaviour
         if (team == Team.Blue)
         {
             blueConfetti.SetActive(true);
+            purpleAgentRb.isKinematic = true;
         }
         else
         {
             purpleConfetti.SetActive(true);
+            blueAgentRb.isKinematic = true;
         }
+        tournamentUI.expandingText.text = team == Team.Blue ? BlueTeamName + " Wins!" : PurpleTeamName + " Wins!";
+        tournamentUI.expandingText.gameObject.SetActive(true);
+        tournamentUI.expandingText.transform.DOScale(1, 0.5f).From(0);
+        tournamentUI.constantUIParent.SetActive(false);
+        
+        hasWinner = true;
     }
     /// <summary>
     /// Changes the color of the ground for a moment.

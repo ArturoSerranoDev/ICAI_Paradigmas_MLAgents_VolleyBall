@@ -24,6 +24,12 @@ public class TournamentUI : MonoBehaviour
     public string BlueTeamName;
     public string PurpleTeamName;
     
+    public void UpdateTeamNames(string blueTeamName, string purpleTeamName)
+    {
+        BlueTeamName = blueTeamName;
+        PurpleTeamName = purpleTeamName;
+    }
+    
     public void UpdateRoundsText(int blueRoundsWon, int purpleRoundsWon)
     {
         blueRoundsText.text = BlueTeamName + ": " + blueRoundsWon.ToString();
