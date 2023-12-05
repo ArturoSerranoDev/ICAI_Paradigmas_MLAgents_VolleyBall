@@ -1274,6 +1274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9192ad618692b8241b00e165f3563b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueTeamName: AlexJavi
+  PurpleTeamName: Brawltato_Miguel
   blueAgent: {fileID: 328478129}
   purpleAgent: {fileID: 328478128}
   AgentsList:
@@ -1284,15 +1286,13 @@ MonoBehaviour:
   purpleGoal: {fileID: 328478125}
   MaxEnvironmentSteps: 0
   tournamentAgentsSO: {fileID: 11400000, guid: fc905b78155ff2146b887ce9b0d0cdbf, type: 2}
-  BlueTeamName: AlexJavi
-  PurpleTeamName: Brawltato_Miguel
   tournamentUI: {fileID: 888114361}
   blueConfetti: {fileID: 699767384}
   purpleConfetti: {fileID: 263900332}
   blueCamera: {fileID: 1231594431}
   purpleCamera: {fileID: 1707120993}
   eyesBlue: {fileID: 1520393427}
-  eyesPurple: {fileID: 1520393426}
+  eyesPurple: {fileID: 1776271127}
 --- !u!114 &888114361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2063,11 +2063,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496691603}
   m_CullTransparentMesh: 1
---- !u!1 &1520393426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 959792829295620404, guid: fed76ada46450914f86122b2893fe1bd, type: 3}
-  m_PrefabInstance: {fileID: 328478123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1520393427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4442685095134714085, guid: fed76ada46450914f86122b2893fe1bd, type: 3}
@@ -2308,6 +2303,11 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1776271127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 959792829295620404, guid: fed76ada46450914f86122b2893fe1bd, type: 3}
+  m_PrefabInstance: {fileID: 328478123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1839006473
 PrefabInstance:
   m_ObjectHideFlags: 0
