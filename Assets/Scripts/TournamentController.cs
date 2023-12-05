@@ -361,7 +361,7 @@ public class TournamentController : MonoBehaviour
         else if(round == 2)
         {
             ball.transform.localScale = new Vector3(7,7,7);
-            ball.GetComponent<Rigidbody>().mass = 5;
+            ball.GetComponent<Rigidbody>().mass = 8;
         }
     }
 
