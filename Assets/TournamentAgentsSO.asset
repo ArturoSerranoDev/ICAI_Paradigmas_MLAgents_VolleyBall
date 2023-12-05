@@ -43,3 +43,6 @@ MonoBehaviour:
   - teamName: YoFonLingin
     prefab: {fileID: 830218020610698865, guid: c56a290799408e049aa6599de0b25379, type: 3}
     agentModel: {fileID: 5022602860645237092, guid: 3752b2e91caf19447bac0701a17a1ac5, type: 3}
+  - teamName: TrioDeReyes
+    prefab: {fileID: 830218020610698865, guid: f71ca124860419e4ea2de8af1ab0f997, type: 3}
+    agentModel: {fileID: 5022602860645237092, guid: c8407b1adad01654d9dd7f00a92404bc, type: 3}

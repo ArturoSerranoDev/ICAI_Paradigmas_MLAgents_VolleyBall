@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9192ad618692b8241b00e165f3563b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueTeamName: AlexJavi
+  BlueTeamName: TrioDeReyes
   PurpleTeamName: Brawltato_Miguel
   blueAgent: {fileID: 328478129}
   purpleAgent: {fileID: 328478128}
